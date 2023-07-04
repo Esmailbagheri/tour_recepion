@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="navbar-collapse justify-content-end">
+      <ul class="navbar-nav">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'account:user_logout' %}">خروج</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'account:user_profile' request.user.id %}">پروفایل</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'account:user_register' %}">ثبت نام</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'account:user_login' %}">ورود</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'home:home' %}">صفحه اصلی</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

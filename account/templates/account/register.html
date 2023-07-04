@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h3>Register Form</h3>
+  <form class="left-align" action="" method="post" class="col-md-6" novalidate>
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="ثبت نام">
+  </form>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form class="left-align" action="" method="get">
+        <div style="display: flex;">
+            {{ search_form.search }}
+            <input class="btn btn-secondary active" type="submit" value="Search">
+        </div>
+    </form><br><br>
+
+
+
+
+    <div class="card">
+        {% for pst in posts %}
+        <a href="{{ pst.get_absolute_url }}" class="card-body"> {{ pst.titel|truncatewords:20 }} </a>
+        {% endfor %}
+    </div>
+{% endblock %}
+

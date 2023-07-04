@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2 class="text-center">{{ user.username }}</h2>
+    {% if request.user.id == user.id %}
+    <a href="{% url 'home:create_post' %}" class="btn btn-primary">ایجاد تور</a>
+    <a href="{% url 'account:edit_user' %}" class="btn btn-success">تکمیل پروفایل</a>
+    {% endif %}
+    <br><br>
+    <h3> {{user.username}} تورهای</h3>
+    <hr>
+    {% if request.user.id != user.id and not is_following %}
+
+        <a class="btn btn-primary" href="{% url 'account:user_follow' user.id %}">دنبال کردن</a>
+
+    {% elif request.user.id != user.id and is_following %}
+
+        <a class="btn btn-primary" href="{% url 'account:user_unfollow' user.id %}">لغو دنبال کردن</a>
+
+    {% endif %}
+
+
+
+    <div class="card">
+        {% for pst in posts %}
+            <a href="{{ pst.get_absolute_url }}" class="card-body"> {{ pst.body|truncatewords:8 }} </a>
+        {% endfor %}
+    </div>
+{% endblock %}
